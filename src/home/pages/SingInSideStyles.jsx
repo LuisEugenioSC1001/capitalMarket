@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     root: {
       height: '100vh',
+      backgroundColor:'#6d6e6d'
     },
     image: {
       backgroundImage: 'url(https://source.unsplash.com/random)',
@@ -16,11 +17,13 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(8, 4),
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
+      alignItems:"center"
+      
     },
-    avatar: {
-      margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
+    navigateButton:{
+      display:'flex',
+      justifyContent:'center',
+      
     },
     form: {
       width: '100%', // Fix IE 11 issue.
