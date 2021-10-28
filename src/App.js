@@ -1,19 +1,28 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route} from 'react-router-dom';
-import SignInSide from './home/pages/SignInSide'
-import LoginPage from './auth/pages/login/LoginPage'
-import RegisterPage from './auth/pages/register/RegisterPage'
-export default class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path='/index' component={SignInSide} />
-          <Route exact path='/login' component={LoginPage} />
-          <Route exact path='/register' component={RegisterPage} />
-          <Route component={LoginPage} />
-        </Switch>
-      </BrowserRouter>
-    );
-  }
+import React from "react";
+import {BrowserRouter as Router,Switch, Route} from 'react-router-dom'
+import IndexPage from "./pages/index/IndexPage";
+import LoginPage from "./pages/login/LoginPage";
+import RegisterPage from "./pages/register/RegisterPage";
+import MainPage from './pages/main/MainPage'
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/login" exact>
+          <LoginPage />
+        </Route>
+        <Route path="/register" exact>
+          <RegisterPage/>
+        </Route>
+        <Route path="/main" exact>
+          <MainPage/>
+        </Route>
+        <Route>
+          <IndexPage/>
+        </Route>
+      </Switch>
+    </Router>
+  );
 }
+
+export default App;
