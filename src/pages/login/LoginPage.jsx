@@ -1,7 +1,8 @@
-import React, {useState}from 'react'
+import React, { useState } from 'react'
 import { Container, Grid, Avatar, CssBaseline, TextField, Checkbox, Button, FormControl, FormControlLabel, Link } from '@mui/material/'
 import { Link as RouterLink } from 'react-router-dom'
 import apiBaseUrl from '../../shared/utils/Api'
+import Logo from '../../shared/img/Logo2.png'
 
 
 export default function LoginPage() {
@@ -50,44 +51,50 @@ export default function LoginPage() {
   return (
     <Container maxWidth="xs" >
       <CssBaseline />
-      <Grid item sm={12} mt={20} container sx={{ alignItems: 'center', justifyContent: 'center' }}>
-        <Avatar />
+      <Grid my={10} container sx={{ alignItems: 'center', justifyContent: 'center' }}>
+        <Grid item >
+          <Avatar alt="Logo" src={Logo} sx={{ width: '100%', height: 200 }} />
+        </Grid>
         <FormControl fullWidth={true}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            onChange={handleEmail}
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            onChange={handlePassword}
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <Link alignSelf='end'>Forgot password?</Link>
-
-          <Button
-            id="SubmitButton"
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            onClick={submitForm}
-          >
-            Sign In
-          </Button>
+          <Grid item xs={12} md={12}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              onChange={handleEmail}
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus />
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              onChange={handlePassword}
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+          </Grid>
+          <Grid item xs={12} md={12}>
+            <Button
+              id="SubmitButton"
+              
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="error"
+              onClick={submitForm}
+            >Sign In
+            </Button>
+          </Grid>
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"

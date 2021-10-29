@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
-import { Container, Grid, Avatar, CssBaseline, TextField, Select, MenuItem, Button, FormControl, InputLabel, Link, Autocomplete, Typography } from '@mui/material/'
+import { Container, Grid, Avatar, CssBaseline, TextField, Select, MenuItem, Button, FormControl, InputLabel, Link, Autocomplete } from '@mui/material/'
 import { Link as RouterLink } from 'react-router-dom'
 import Countries from '../../shared/utils/Docs/country.json'
-import apiBaseUrl from '../../shared/utils/Api'
+import apiBaseUrl from '../../shared/utils/Api';
+import Logo from '../../shared/img/Logo2.png'
 
 export default function RegisterPage() {
+    
     const countries = Object.keys(Countries).sort()
 
     const [nameValue, setName] = useState("");
@@ -82,9 +84,9 @@ export default function RegisterPage() {
         <Container maxWidth="xs" >
             <CssBaseline />
             <FormControl>
-                <Grid item xs={12} mt={20} container sx={{ alignItems: 'center', justifyContent: 'center' }}>
+                <Grid item xs={12} my={10} container sx={{ alignItems: 'center', justifyContent: 'center' }}>
                     <Grid item >
-                        <Avatar />
+                        <Avatar alt="Logo" src={Logo} sx={{ width: '100%', height: 200 }} />
                     </Grid>
                     <Grid container spacing={2}>
                         <Grid item container mt={4} spacing={2}>
@@ -157,8 +159,9 @@ export default function RegisterPage() {
                             <Button id="SubmitButton" type="submit" fullWidth variant="contained" color="primary" onClick={submitForm}>Sign In </Button>
                         </Grid>
                     </Grid>
+                    <Link mt={3} alignSelf='center' component={RouterLink} to='/login'>Already have an account? Log In</Link>
                 </Grid>
-                <Link mt={3} alignSelf='center' component={RouterLink} to='/login'>Already have an account? Log In</Link>
+                
 
             </FormControl>
         </Container>

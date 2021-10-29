@@ -1,13 +1,13 @@
-import { makeStyles } from "@material-ui/core"
+import { makeStyles } from "@mui/styles";
 
 
 const Colors = makeStyles({
     primary: {
-        backgroundColor: primaryColor
+        backgroundColor: 'red'
     },
     btnPrimary: {
         color: 'white',
-        backgroundColor: primaryColor
+        backgroundColor: 'blue'
     },
     btnDanger:{
         color: 'white',
