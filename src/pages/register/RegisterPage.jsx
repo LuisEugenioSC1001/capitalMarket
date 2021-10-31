@@ -1,12 +1,36 @@
 import React, { useState } from 'react'
-import { Container, Grid, Avatar, CssBaseline, TextField, Select, MenuItem, Button, FormControl, InputLabel, Link, Autocomplete } from '@mui/material/'
-import { Link as RouterLink } from 'react-router-dom'
+import { Paper, Container, Grid, Avatar, CssBaseline, TextField, Select, MenuItem, Button, FormControl, InputLabel, Link, Autocomplete } from '@mui/material/'
+import { Link as RouterLink,Redirect } from 'react-router-dom'
 import Countries from '../../shared/utils/Docs/country.json'
 import apiBaseUrl from '../../shared/utils/Api';
 import Logo from '../../shared/img/Logo2.png'
+import { makeStyles } from '@mui/styles';
+import City from '../../shared/img/City.jpg'
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        backgroundImage: `url(${City})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        height: '100vh'
+    },
+    container: {
+        height: '90%',
+        display:'flex',
+        alignItems:'center',
+        marginTop: theme.spacing(5),
+        [theme.breakpoints.down(500)]: {
+            opacity: 1,
+            marginTop: 0,
+            width: '100vh',
+            height: 'auto',
+        }
+
+    }
+}))
 
 export default function RegisterPage() {
-    
+    const classes = useStyles();
     const countries = Object.keys(Countries).sort()
 
     const [nameValue, setName] = useState("");
@@ -19,7 +43,13 @@ export default function RegisterPage() {
     const handlePassword = e => setPassword(e.target.value);
 
     const [countryValue, setCountry] = useState("");
-    const handleCountry = (event, value) => setCountry(value);
+    const handleCountry = (event, value) => {
+        if (value=== null) {
+            setCountry("")
+        } else {
+            setCountry(value)
+        }
+    };
 
     const [emailValue, setEmail] = useState("");
     const handleEmail = e => setEmail(e.target.value);
@@ -72,7 +102,9 @@ export default function RegisterPage() {
                     },
                 });
                 const user = await response.json();
-                console.log(user);
+                if (user.Status === "Success") {
+                    <Redirect to='/login'/>
+                }
             }
             catch (e) {
                 console.log(e)
@@ -81,17 +113,19 @@ export default function RegisterPage() {
         }
     }
     return (
-        <Container maxWidth="xs" >
-            <CssBaseline />
-            <FormControl>
-                <Grid item xs={12} my={10} container sx={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <Grid item >
+        <Grid container component='main' className={classes.root} >
+            <Container component={Paper} elevation={5} maxWidth='xs' className={classes.container} >
+                <CssBaseline />
+                <Grid bgcolor='white' pb={5} container sx={{ alignItems: 'center', justifyContent: 'center' }}>
+                    <Grid item>
                         <Avatar alt="Logo" src={Logo} sx={{ width: '100%', height: 200 }} />
                     </Grid>
+
                     <Grid container spacing={2}>
-                        <Grid item container mt={4} spacing={2}>
+                        <Grid item container spacing={2}>
                             <Grid item xs={12} md={6}>
                                 <TextField
+                                    autoFocus
                                     id="name"
                                     label="Name"
                                     fullWidth={true}
@@ -129,16 +163,15 @@ export default function RegisterPage() {
                             <Grid item xs={12} >
                                 <FormControl fullWidth required>
                                     <Autocomplete id='country' onChange={handleCountry} options={countries} renderInput={(params) => (<TextField {...params} label="Country" />)} />
-                                    
                                 </FormControl>
-                                
+
                             </Grid>
 
                             {
                                 countryValue !== "" &&
                                 <Grid item xs={12} >
                                     <FormControl fullWidth required>
-                                        <Autocomplete id='city' onChange={handleCity} options={countryValue !== ""?Countries[countryValue].sort():[]} renderInput={(params) => (<TextField {...params} label="City" />)} />
+                                        <Autocomplete id='city' onChange={handleCity} options={countryValue !== "" ? Countries[countryValue].sort() : []} renderInput={(params) => (<TextField {...params} label="City" />)} />
                                     </FormControl>
                                 </Grid>
                             }
@@ -153,17 +186,16 @@ export default function RegisterPage() {
                             </FormControl>
                         </Grid>
                         <Grid item xs={12} >
-                            {roleValue === 'Seller' && <TextField  label="Shop Name" fullWidth={true} onChange={handleShopName} />}
+                            {roleValue === 'Seller' && <TextField label="Shop Name" fullWidth={true} onChange={handleShopName} />}
                         </Grid>
                         <Grid item xs={12} >
-                            <Button id="SubmitButton" type="submit" fullWidth variant="contained" color="primary" onClick={submitForm}>Sign In </Button>
+                            <Button id="SubmitButton" type="submit" fullWidth variant="contained" color="primary" onClick={submitForm}>Register</Button>
                         </Grid>
                     </Grid>
                     <Link mt={3} alignSelf='center' component={RouterLink} to='/login'>Already have an account? Log In</Link>
                 </Grid>
-                
-
-            </FormControl>
-        </Container>
+            </Container>
+        </Grid>
     )
+
 }

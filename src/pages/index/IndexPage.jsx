@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Avatar, Button, CssBaseline, Link, Paper, Box, Grid, Typography } from '@mui/material/';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom'
 import Logo from '../../shared/img/Logo.png'
 function Copyright(props) {
@@ -16,12 +15,10 @@ function Copyright(props) {
     );
 }
 
-const theme = createTheme();
 
 export default function IndexPage() {
 
     return (
-        <ThemeProvider theme={theme}>
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
@@ -51,10 +48,10 @@ export default function IndexPage() {
                         <Box>
                             <Grid container spacing={10}>
                                 <Grid item xs={6}>
-                                    <Button variant="outlined" color="error" component={RouterLink} to={{pathname: '/register',}}>Register</Button>
+                                    <Button variant="outlined" color="primary" component={RouterLink} to={{pathname: '/register',}}>Register</Button>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Button variant="contained" color="error" disableElevation component={RouterLink} to={{pathname: '/login',}}>Login</Button>
+                                    <Button variant="contained" color="primary" disableElevation component={RouterLink} to={{pathname: '/login',}}>Login</Button>
                                 </Grid>
                             </Grid>
                         </Box>
@@ -68,6 +65,5 @@ export default function IndexPage() {
                     </Box>
                 </Grid>
             </Grid>
-        </ThemeProvider>
     );
 }

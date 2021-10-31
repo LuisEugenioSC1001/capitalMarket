@@ -4,24 +4,28 @@ import IndexPage from "./pages/index/IndexPage";
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/register/RegisterPage";
 import MainPage from './pages/main/MainPage'
+import { ThemeProvider } from '@mui/material/styles';
+import ThemeCustom from "./shared/styles/Colors";
 function App() {
   return (
+    <ThemeProvider theme={ThemeCustom}>
     <Router>
       <Switch>
         <Route path="/login" exact>
           <LoginPage />
         </Route>
         <Route path="/register" exact>
-          <RegisterPage/>
+          <RegisterPage />
         </Route>
         <Route path="/main" exact>
-          <MainPage/>
+          <MainPage />
         </Route>
         <Route>
-          <IndexPage/>
+          <IndexPage />
         </Route>
       </Switch>
     </Router>
+    </ThemeProvider>
   );
 }
 

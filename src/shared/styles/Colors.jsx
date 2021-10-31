@@ -1,18 +1,14 @@
-import { makeStyles } from "@mui/styles";
+import { createTheme } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
 
 
-const Colors = makeStyles({
-    primary: {
-        backgroundColor: 'red'
+const ThemeCustom = createTheme({
+    palette: {
+        primary: {
+            main: red[800],
+        },
     },
-    btnPrimary: {
-        color: 'white',
-        backgroundColor: 'blue'
-    },
-    btnDanger:{
-        color: 'white',
-        backgroundColor: 'red'
-    }
-})
+});
 
-export default Colors;
+
+export default ThemeCustom;
