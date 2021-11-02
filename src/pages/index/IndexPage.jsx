@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Avatar, Button, CssBaseline, Link, Paper, Box, Grid, Typography } from '@mui/material/';
+import { Avatar, Button, CssBaseline, Link, Box, Grid, Typography } from '@mui/material/';
 import { Link as RouterLink } from 'react-router-dom'
 import Logo from '../../shared/img/Logo.png'
 function Copyright(props) {
@@ -35,14 +35,14 @@ export default function IndexPage() {
                         backgroundPosition: 'center',
                     }}
                 />
-                <Grid item xs={12} sm={8} md={5} component={Paper} square>
+                <Grid item xs={12} sm={8} md={5} alignSelf='center' square>
                     <Box
                         sx={{
                             my: 8,
                             mx: 4,
                             display: 'flex',
                             flexDirection: 'column',
-                            alignItems: 'center'
+                            alignItems: 'center',
                         }}
                     >
                         <Box>
