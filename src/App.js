@@ -6,6 +6,8 @@ import RegisterPage from "./pages/register/RegisterPage";
 import MainPage from './pages/main/MainPage'
 import { ThemeProvider } from '@mui/material/styles';
 import ThemeCustom from "./shared/styles/Colors";
+import SellerCard from "./shared/components/SellerCard";
+import NavigatioBar from "./shared/components/NavigatioBar";
 
 function App() {
   return (
@@ -20,6 +22,13 @@ function App() {
         </Route>
         <Route path="/main" exact>
           <MainPage />
+        </Route>
+        <Route path="/userSeller" exact>
+          <NavigatioBar />
+          <SellerCard />
+        </Route>
+        <Route path="/Navigator" exact>
+          <NavigatioBar />
         </Route>
         <Route>
           <IndexPage />
