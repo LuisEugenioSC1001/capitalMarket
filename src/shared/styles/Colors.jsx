@@ -7,6 +7,9 @@ const ThemeCustom = createTheme({
         primary: {
             main: red[800],
         },
+        White: {
+            main: '#fff',
+        },
     },
 });
 

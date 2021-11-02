@@ -6,6 +6,7 @@ import RegisterPage from "./pages/register/RegisterPage";
 import MainPage from './pages/main/MainPage'
 import { ThemeProvider } from '@mui/material/styles';
 import ThemeCustom from "./shared/styles/Colors";
+
 function App() {
   return (
     <ThemeProvider theme={ThemeCustom}>
