@@ -4,6 +4,9 @@ import IndexPage from "./pages/index/IndexPage";
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/register/RegisterPage";
 import MainPage from './pages/main/MainPage'
+import ViewProducUser from './shared/components/Views/ViewsProducUser'
+
+
 function App() {
   return (
     <Router>
@@ -16,6 +19,9 @@ function App() {
         </Route>
         <Route path="/main" exact>
           <MainPage/>
+        </Route>
+        <Route path="/products" exact>
+          <ViewProducUser/>
         </Route>
         <Route>
           <IndexPage/>
