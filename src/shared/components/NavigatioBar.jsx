@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import { ShoppingCart, Settings, Logout, AccountCircle } from '@mui/icons-material/';
+import { ShoppingCart, Settings, Logout, AccountCircle, Search, Menu as MenuIcon } from '@mui/icons-material/';
 import { Menu, MenuItem, Divider, Grid, Tooltip, Avatar, IconButton, Box, AppBar } from '@mui/material/';
 import Logo from '../../shared/img/Logo2.png'
 
@@ -16,15 +16,20 @@ export default function NavigatioBar() {
     return (
         <Box>
             <AppBar position="static">
-                <Grid container sx={{ justifyContent: 'space-between' }}>
-                    <Grid item contaioner xs={4}>
-                        <Avatar alt="Logo" src={Logo} sx={{ width: 56, height: 56 }} />
+                <Grid container p={0.5} sx={{ justifyContent: 'space-between' }}>
+                    <Grid item container xs={4} justifyContent="start">
+                        <IconButton >
+                            <MenuIcon fontSize='large' color='White' />
+                        </IconButton>
+                        <IconButton >
+                            <Search fontSize='large' color='White' />
+                        </IconButton>
                     </Grid>
-                    <Grid item contaioner xs={4} >
-                        <Avatar alt="Logo"  src={Logo} sx={{ width: 56, height: 56, alignSelf:'center' }} />
+                    <Grid item container justifyContent="center" xs={4} >
+                        <Avatar alt="Logo" src={Logo} sx={{ width: 56, height: 56, alignSelf: 'center' }} />
                     </Grid>
-                    <Grid item container xs={4}>
-                        <IconButton>
+                    <Grid item container xs={4} justifyContent="end">
+                        <IconButton >
                             <ShoppingCart fontSize='large' color='White' />
                         </IconButton>
                         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
