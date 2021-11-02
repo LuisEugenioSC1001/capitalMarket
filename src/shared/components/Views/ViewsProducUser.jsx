@@ -10,10 +10,11 @@ import CircleIcon from '@mui/icons-material/Circle';
 
 const Usestyles = makeStyles({
     root:{
-        maxWidth: 345,
+        marginTop: 30,
+        maxWidth: 300,
     },
     media:{
-        height: 300,
+        height: 280,
     }
 
 })
@@ -45,7 +46,7 @@ function ViewsProducUser () {
                     <Item>Precio$</Item>
                 </Grid>
                 <CardActions>
-                    <Stack direction= "row" spacing= {20}>    
+                    <Stack direction= "row" spacing= {18}>    
                         <IconButton
                         size = "large"
                         ><AddBoxIcon fontSize= "large" color="success"/>

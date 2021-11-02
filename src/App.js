@@ -4,7 +4,7 @@ import IndexPage from "./pages/index/IndexPage";
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/register/RegisterPage";
 import MainPage from './pages/main/MainPage'
-import ViewProducUser from './shared/components/Views/ViewsProducUser'
+import CardsMedia from './shared/components/Cards/CardsMedia'
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
           <MainPage/>
         </Route>
         <Route path="/products" exact>
-          <ViewProducUser/>
+          <CardsMedia/>
         </Route>
         <Route>
           <IndexPage/>
