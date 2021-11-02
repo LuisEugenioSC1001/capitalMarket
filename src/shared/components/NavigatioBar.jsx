@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import { useHistory } from 'react-router-dom';
 import { ShoppingCart, Settings, Logout, AccountCircle, Search, Menu as MenuIcon } from '@mui/icons-material/';
 import { Menu, MenuItem, Divider, Grid, Tooltip, Avatar, IconButton, Box, AppBar } from '@mui/material/';
 import Logo from '../../shared/img/Logo2.png'
 
+
 export default function NavigatioBar() {
+    const history = useHistory();
+    useEffect(() => {    
+        if ((sessionStorage.getItem("User") === null) && (localStorage.getItem("User") === null)) {
+            history.push('/')
+        }
+    })
+
+    const logout = () => {
+        sessionStorage.clear()
+        localStorage.clear()
+        history.push('/')
+    }
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -86,8 +100,8 @@ export default function NavigatioBar() {
                                 </ListItemIcon>
                                 Settings
                             </MenuItem>
-                            <MenuItem>
-                                <ListItemIcon>
+                            <MenuItem onClick={()=>logout()}>
+                                <ListItemIcon >
                                     <Logout fontSize="small" />
                                 </ListItemIcon>
                                 Logout

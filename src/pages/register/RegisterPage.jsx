@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Paper, Container, Grid, Avatar, CssBaseline, TextField, Select, MenuItem, Button, FormControl, InputLabel, Link, Autocomplete } from '@mui/material/'
-import { Link as RouterLink,Redirect } from 'react-router-dom'
+import { Link as RouterLink,useHistory } from 'react-router-dom'
 import Countries from '../../shared/utils/Docs/country.json'
 import apiBaseUrl from '../../shared/utils/Api';
 import Logo from '../../shared/img/Logo2.png'
@@ -30,6 +30,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function RegisterPage() {
+    const history = useHistory();
     const classes = useStyles();
     const countries = Object.keys(Countries).sort()
 
@@ -103,7 +104,7 @@ export default function RegisterPage() {
                 });
                 const user = await response.json();
                 if (user.Status === "Success") {
-                    <Redirect to='/login'/>
+                    history.push('/login')
                 }
             }
             catch (e) {

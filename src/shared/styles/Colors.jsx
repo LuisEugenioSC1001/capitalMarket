@@ -5,10 +5,13 @@ import { red } from '@mui/material/colors';
 const ThemeCustom = createTheme({
     palette: {
         primary: {
-            main: red[800],
+            main: 'rgba(89, 18, 21,1)',
         },
         White: {
             main: '#fff',
+        },
+        Red: {
+            main: red[500],
         },
     },
 });

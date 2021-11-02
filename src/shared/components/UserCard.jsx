@@ -23,7 +23,7 @@ export default function UserCard() {
                             <EditRoundedIcon />
                         </IconButton>
                         <IconButton>
-                            < DeleteRoundedIcon />
+                            < DeleteRoundedIcon color='Red'  />
                         </IconButton></>
 
                 }

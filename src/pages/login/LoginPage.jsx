@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Paper, Grid, Avatar, CssBaseline, TextField, Checkbox, Button, FormControl, FormControlLabel, Link } from '@mui/material/'
-import { Link as RouterLink, Redirect } from 'react-router-dom'
+import { Link as RouterLink, useHistory } from 'react-router-dom'
 import apiBaseUrl from '../../shared/utils/Api'
 import Logo from '../../shared/img/Logo2.png'
 import { makeStyles } from '@mui/styles';
@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function LoginPage() {
+  const history = useHistory();
   const classes = useStyles();
   const [emailValue, setEmail] = useState("");
   const handleEmail = e => setEmail(e.target.value.toLowerCase());
@@ -67,15 +68,13 @@ export default function LoginPage() {
           },
         });
         const user = await response.json();
-        console.log(user.Status)
         if (user.Status === "Success") {
-
           if (rememberMe) {
             localStorage.setItem("User", JSON.stringify(user.Data));
           } else {
             sessionStorage.setItem("User", JSON.stringify(user.Data));
           }
-          <Redirect to='/main' />
+          history.push('/main')
         }
       }
       catch (e) {

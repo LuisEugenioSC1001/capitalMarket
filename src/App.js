@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router,Switch, Route} from 'react-router-dom'
+import {BrowserRouter as Router,Switch, Route, Redirect} from 'react-router-dom'
 import IndexPage from "./pages/index/IndexPage";
 import LoginPage from "./pages/login/LoginPage";
 import RegisterPage from "./pages/register/RegisterPage";
@@ -9,6 +9,7 @@ import ThemeCustom from "./shared/styles/Colors";
 
 function App() {
   return (
+    
     <ThemeProvider theme={ThemeCustom}>
     <Router>
       <Switch>
@@ -22,7 +23,7 @@ function App() {
           <MainPage />
         </Route>
         <Route>
-          <IndexPage />
+          {localStorage.getItem("User")===null?<IndexPage />:<Redirect to="/main"/>}
         </Route>
       </Switch>
     </Router>
