@@ -23,17 +23,18 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-export default function ProductCard() {
+export default function ProductCard({Data}) {
     const classes = Usestyles();
     return (
         <Card >
                 <CardMedia className={classes.media} image={Logo} title='shop auriculares'/>
                 <CardContent>
                     <Typography textAlign="center" variant='h5' >
-                        Nombre Producto
+                        {Data.name}
                     </Typography>
-                    <Grid item xs={12} md={12} color="initial">
-                        <Item>Precio$</Item>
+                    <br/>
+                    <Grid item xs={12} md={12} color="initial" spacing={2}>
+                        <Item>Price$: {Data.price}</Item>
                     </Grid>
                     <CardActions sx={{justifyContent:'center'}}>
                         <Stack direction="row" spacing={20}>

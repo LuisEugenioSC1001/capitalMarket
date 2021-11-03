@@ -1,24 +1,30 @@
 import React from 'react'
 import NavigatioBar from '../../shared/components/NavigatioBar';
-import UserCard from '../../shared/components/UserCard';
-import { Box, Grid, CssBaseline } from '@mui/material/'
-import ProductCard from '../../shared/components/ProductsCard';
+import { Box, CssBaseline } from '@mui/material/'
+import GridUserCard from './components/GridUserCard';
+import GridSellerCard from './components/GridSellerCard';
+import GridAdminCard from './components/GridAdmin';
 
 export default function MainPage() {
-
+    
+    
+    const role = sessionStorage.getItem('User') === null ? JSON.parse(localStorage.getItem('User')).role : JSON.parse(sessionStorage.getItem('User')).role;
+    const SwitchGrid = () => {
+        switch (role) {
+            case "User":   
+                return <GridUserCard/>
+            case "Admin":
+                return <GridAdminCard />
+            case "Seller":
+                return <GridSellerCard />
+        }
+    }
     return (
         <>
             <NavigatioBar />
-            <CssBaseline/>
+            <CssBaseline />
             <Box sx={{ width: '100%' }}>
-                <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                    <Grid item xs={12} md={6}>
-                        <UserCard />
-                    </Grid>
-                    <Grid item xs={12} md={4}>
-                        <ProductCard />
-                    </Grid>
-                </Grid>
+                {SwitchGrid()}
             </Box>
         </>
     )

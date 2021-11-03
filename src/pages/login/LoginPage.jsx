@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Container, Paper, Grid, Avatar, CssBaseline, TextField, Checkbox, Button, FormControl, FormControlLabel, Link } from '@mui/material/'
+import { Container, Paper, Grid, Avatar, CssBaseline, Typography, TextField, Checkbox, Button, FormControl, FormControlLabel, Link } from '@mui/material/'
 import { Link as RouterLink, useHistory } from 'react-router-dom'
 import apiBaseUrl from '../../shared/utils/Api'
 import Logo from '../../shared/img/Logo2.png'
 import { makeStyles } from '@mui/styles';
 import City from '../../shared/img/City.jpg'
+import Modal from '../../shared/components/Modal'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,6 +30,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function LoginPage() {
+  const [active, setActive] = useState(false);
+  const [errorShow, setErrorShow] = useState("");
+
+  const toggle = () => {
+    setActive(!active)
+  }
   const history = useHistory();
   const classes = useStyles();
   const [emailValue, setEmail] = useState("");
@@ -51,9 +58,9 @@ export default function LoginPage() {
     }
 
     if (!validateEmail(emailValue)) {
-      console.log("The email doesn't valid")
+      setErrorShow("The email doesn't valid")
     } else if (!checkPassword(passwordValue)) {
-      console.log("The password must contain at least one uppercase letter, at least one special character and its length must be greater than 8 characters");
+      setErrorShow("The password must contain at least one uppercase letter, at least one special character and its length must be greater than 8 characters");
     } else {
       const userData = {
         email: emailValue,
@@ -75,6 +82,9 @@ export default function LoginPage() {
             sessionStorage.setItem("User", JSON.stringify(user.Data));
           }
           history.push('/main')
+        } else {
+          toggle();
+          setErrorShow(user.Description);
         }
       }
       catch (e) {
@@ -84,6 +94,7 @@ export default function LoginPage() {
     }
   }
   return (
+    <>
     <Grid container component='main' className={classes.root} >
       <Container component={Paper} elevation={5} maxWidth='xs' className={classes.container} >
         <CssBaseline />
@@ -143,5 +154,23 @@ export default function LoginPage() {
 
       </Container>
     </Grid>
+    <Modal active={active} toggle={toggle}>
+    <Container maxWidth='sm'>
+      <Grid container>
+        <Grid item xs={12}>
+          <Typography align='center' variant='h5' color='red'>
+            Failure
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant='h6' align='center'>
+            {errorShow}
+          </Typography>
+        </Grid>
+      </Grid>
+
+    </Container>
+  </Modal>
+  </>
   )
 }
